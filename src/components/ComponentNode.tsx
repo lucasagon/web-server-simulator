@@ -24,6 +24,7 @@ export function ComponentNode({ data, selected }: NodeProps<NodeViewData>) {
       }`}
     >
       <Handle type="target" position={Position.Left} className="!border-0 !bg-sky-400" />
+
       <div className="mb-3 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="rounded-md border border-border bg-slate-900 p-2 text-sky-300">
@@ -60,7 +61,8 @@ export function ComponentNode({ data, selected }: NodeProps<NodeViewData>) {
             }
             onMouseDown={(event) => event.stopPropagation()}
             onTouchStart={(event) => event.stopPropagation()}
-            className="mt-1 w-full"
+            style={{ pointerEvents: 'auto' }}
+            className="mt-1 w-full cursor-pointer"
           />
         </label>
       )}
@@ -77,7 +79,8 @@ export function ComponentNode({ data, selected }: NodeProps<NodeViewData>) {
           }
           onMouseDown={(event) => event.stopPropagation()}
           onTouchStart={(event) => event.stopPropagation()}
-          className="mt-1 w-full"
+          style={{ pointerEvents: 'auto' }}
+          className="mt-1 w-full cursor-pointer"
         />
       </label>
 
@@ -95,6 +98,7 @@ export function ComponentNode({ data, selected }: NodeProps<NodeViewData>) {
           />
         </div>
       </div>
+
       <Handle type="source" position={Position.Right} className="!border-0 !bg-sky-400" />
     </div>
   )
