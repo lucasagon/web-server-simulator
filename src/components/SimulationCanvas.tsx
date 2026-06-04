@@ -67,8 +67,7 @@ function CanvasInner(props: SimulationCanvasProps) {
 
   return (
     <div
-      className="relative flex-1"
-      style={{ cursor: spacePressed ? 'grab' : 'default' }}
+      className="rf-canvas relative flex-1"
       onDragOver={(event) => {
         event.preventDefault()
         event.dataTransfer.dropEffect = 'move'
@@ -80,6 +79,10 @@ function CanvasInner(props: SimulationCanvasProps) {
         if (type) props.onDropComponent(type, position.x, position.y)
       }}
     >
+      <style>{`
+        .rf-canvas .react-flow__pane { cursor: ${spacePressed ? 'grab' : 'default'} !important; }
+        .rf-canvas .react-flow__pane:active { cursor: ${spacePressed ? 'grabbing' : 'default'} !important; }
+      `}</style>
       <ReactFlow
         nodes={props.nodes}
         edges={props.edges}
@@ -89,6 +92,7 @@ function CanvasInner(props: SimulationCanvasProps) {
         onConnect={props.onConnect}
         onSelectionChange={(selection) => props.onSelectionChange(selection.nodes[0]?.id ?? null)}
         panOnDrag={spacePressed}
+        nodesDraggable={true}
         fitView
       >
         <MiniMap pannable zoomable className="!bg-slate-950/90" />
